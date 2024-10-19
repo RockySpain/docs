@@ -7,6 +7,7 @@ versions:
 topics:
   - Copilot
 children:
+  - /best-practices-for-using-github-copilot
   - /getting-code-suggestions-in-your-ide-with-github-copilot
   - /asking-github-copilot-questions-in-your-ide
   - /asking-github-copilot-questions-in-githubcom
@@ -17,6 +18,7 @@ children:
   - /prompt-engineering-for-github-copilot
   - /using-extensions-to-integrate-external-tools-with-copilot-chat
   - /finding-public-code-that-matches-github-copilot-suggestions
+  - /example-use-cases
 redirect_from:
   - /copilot/github-copilot-chat
   - /copilot/github-copilot-in-the-cli

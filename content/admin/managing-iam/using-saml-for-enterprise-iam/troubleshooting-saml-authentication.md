@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting SAML authentication
 shortTitle: Troubleshoot SAML SSO
-intro: 'If you use SAML single sign-on (SSO) and people are unable to authenticate to access {% data variables.location.product_location %}, you can troubleshoot the problem.'
+intro: 'If you use SAML single sign-on (SSO) and people are unable to authenticate to access {% data variables.product.github %}, you can troubleshoot the problem.'
 versions:
   ghes: '*'
   ghec: '*'
@@ -44,7 +44,7 @@ You can configure {% data variables.product.product_name %} to write verbose deb
 {% data reusables.enterprise-accounts.options-tab %}
 1. Under "SAML debugging", select the drop-down and click **Enabled**.
 1. Attempt to sign into {% data variables.location.product_location %} through your SAML IdP.
-1. Review the debug output in {% ifversion opentelemetry-and-otel-log-migration-phase-1 %}the systemd journal for `github-unicorn`{% endif %} on {% data variables.location.product_location %}. {% ifversion opentelemetry-and-otel-log-migration-phase-1 %}For more information, see "[AUTOTITLE](/admin/monitoring-managing-and-updating-your-instance/monitoring-your-appliance/about-system-logs#system-logs-in-the-systemd-journal-for-github-enterprise-server)."{% endif %}
+1. Review the debug output in {% ifversion opentelemetry-and-otel-log-migration-phase-1 %}the systemd journal for `github-unicorn`{% endif %} on {% data variables.location.product_location %}. {% ifversion opentelemetry-and-otel-log-migration-phase-1 %}For more information, see "[AUTOTITLE](/admin/monitoring-and-managing-your-instance/monitoring-your-instance/about-system-logs#system-logs-in-the-systemd-journal-for-github-enterprise-server)."{% endif %}
 1. When you're done troubleshooting, select the drop-down and click **Disabled**.
 
 ## Decoding responses

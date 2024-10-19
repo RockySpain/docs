@@ -138,7 +138,7 @@ Code annotations only work in articles with the `layout: inline` frontmatter pro
               PR_URL: ${{ github.event.pull_request.html_url }}
     ```
 
-For an example of an article that uses code annotations on {% data variables.product.prodname_docs %}, see "[AUTOTITLE](/actions/examples/using-scripts-to-test-your-code-on-a-runner)."
+For an example of an article that uses code annotations on {% data variables.product.prodname_docs %}, see "[AUTOTITLE](/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions)."
 
 ## Octicons
 
@@ -376,7 +376,7 @@ For example, if you include the following link in a content file:
 /github/writing-on-github/creating-a-saved-reply
 ```
 
-When viewed on {% data variables.product.prodname_dotcom_the_website %} docs, the link gets rendered with the language code:
+When viewed on {% data variables.product.prodname_docs %}, the link gets rendered with the language code:
 
 ```text
 /en/github/writing-on-github/creating-a-saved-reply

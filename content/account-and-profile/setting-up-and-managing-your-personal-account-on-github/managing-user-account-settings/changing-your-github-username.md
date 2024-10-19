@@ -76,7 +76,11 @@ If the new owner of your old username creates a repository with the same name as
 
 ## Links to your previous profile page
 
-After changing your username, links to your previous profile page, such as `https://{% data variables.product.product_url %}/previoususername`, will return a 404 error. We recommend updating any links to your account on {% data variables.location.product_location %} from elsewhere{% ifversion fpt or ghec %}, such as your LinkedIn or Twitter profile{% endif %}.
+After changing your username, links to your previous profile page, such as `https://{% data variables.product.product_url %}/previoususername`, will return a 404 error. We recommend updating any links to your profile from elsewhere{% ifversion fpt or ghec %}, such as your LinkedIn or Twitter profile{% endif %}.
+
+## Accounts logged in on GitHub Mobile
+
+Accounts logged in on the {% data variables.product.prodname_mobile %} app may continue to display your original username until you log out. To ensure your updated username is displayed, we recommend you sign out and back in to your account on each mobile device.
 
 ## Your Git commits
 

@@ -1,7 +1,7 @@
 ---
 title: Viewing license usage for GitHub Enterprise
 intro: 'You can view license usage for your enterprise on {% ifversion ghec %}{% data variables.product.prodname_dotcom_the_website %}{% elsif ghes %}{% data variables.location.product_location %}{% endif %}.'
-permissions: 'Enterprise owners can view license usage for {% data variables.product.prodname_enterprise %}.'
+permissions: 'Enterprise owners{% ifversion ghec %} and billing managers{% endif %}'
 versions:
   ghec: '*'
   ghes: '*'
@@ -30,7 +30,7 @@ For more information about viewing license usage on {% data variables.product.pr
 
 {% endif %}
 
-You can also use the REST API to return consumed licenses data and the status of the license sync job. For more information, see "[AUTOTITLE](/enterprise-cloud@latest/rest/enterprise-admin/license)."
+You can also use the REST API to return consumed licenses data and the status of the license sync job. See "[AUTOTITLE](/enterprise-cloud@latest/rest/enterprise-admin/license)."
 
 To learn more about the license data associated with your enterprise account and how the number of consumed user {% ifversion ghas-billing-UI-update %}licenses{% else %}seats{% endif %} are calculated, see "[AUTOTITLE](/billing/managing-your-license-for-github-enterprise/troubleshooting-license-usage-for-github-enterprise)."
 
@@ -44,9 +44,10 @@ You can view the license usage for your enterprise and download a file with lice
 {% data reusables.enterprise-accounts.settings-tab %}
 {% data reusables.enterprise-accounts.license-tab %}
 1. Review your current {% data variables.product.prodname_enterprise %} license, as well as consumed and available user licenses.
-    * To download the consumed license report as a CSV file, to the right of "User licenses," click {% octicon "download" aria-hidden="true" %} **CSV report**. For more information about reviewing the data in this report, see "[AUTOTITLE](/billing/managing-your-license-for-github-enterprise/troubleshooting-license-usage-for-github-enterprise)."
-    * If you purchased {% data variables.product.prodname_GH_advanced_security %}, you can review your total {% ifversion ghas-billing-UI-update %}license{% else %}seat{% endif %} usage. For more information, see "[AUTOTITLE](/billing/managing-billing-for-github-advanced-security/viewing-your-github-advanced-security-usage)."
-    * To view an overview of the consumed licenses without downloading a report, click **View details**, then look under "User licenses consumed". For more information, see "[AUTOTITLE](/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/viewing-people-in-your-enterprise#user-licenses-consumed)."
+
+   * If you purchased {% data variables.product.prodname_GH_advanced_security %}, you can review your total {% ifversion ghas-billing-UI-update %}license{% else %}seat{% endif %} usage. To learn about the information displayed, see "[AUTOTITLE](/billing/managing-billing-for-your-products/managing-billing-for-github-advanced-security/viewing-your-github-advanced-security-usage)."
+
+1. To download a CSV report of the license usage, click {% octicon "kebab-horizontal" aria-label="Licensing dropdown" %} to the right of the usage you want to download, then click {% octicon "download" aria-hidden="true" %} **CSV report**.
 
 {% elsif ghes %}
 
@@ -55,7 +56,7 @@ You can view the license usage for your enterprise and download a file with lice
 {% data reusables.enterprise-accounts.license-tab %}
 1. Review your current {% data variables.product.prodname_enterprise %} license, as well as consumed and available user licenses.{% ifversion ghes %}
     * To download the consumed license report as a JSON file, in the top right under "Quick links", choose **Export license usage**. For more information about reviewing the data in this report, see "[AUTOTITLE](/billing/managing-your-license-for-github-enterprise/troubleshooting-license-usage-for-github-enterprise)."
-    * If you have purchased {% data variables.product.prodname_GH_advanced_security %}, you can review your total {% ifversion ghas-billing-UI-update %}licenses{% else %}seats{% endif %} used as well as a per-organization breakdown of active committers. For more information, see "[AUTOTITLE](/admin/code-security/managing-github-advanced-security-for-your-enterprise)."{% endif %}
+    * If you have purchased {% data variables.product.prodname_GH_advanced_security %}, you can review your total {% ifversion ghas-billing-UI-update %}licenses{% else %}seats{% endif %} used as well as a per-organization breakdown of active committers. See "[AUTOTITLE](/admin/code-security/managing-github-advanced-security-for-your-enterprise)."{% endif %}
 
 {% endif %}
 {% ifversion ghec %}

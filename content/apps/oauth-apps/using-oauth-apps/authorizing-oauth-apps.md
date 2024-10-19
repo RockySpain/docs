@@ -14,7 +14,7 @@ topics:
   - Identity
   - Access management
 ---
-When an {% data variables.product.prodname_oauth_app %} wants to identify you by your account on {% data variables.location.product_location %}, you'll see a page with the app's developer contact information and a list of the specific data that's being requested.
+When an {% data variables.product.prodname_oauth_app %} wants to identify you by your account on {% data variables.product.github %}, you'll see a page with the app's developer contact information and a list of the specific data that's being requested.
 
 {% ifversion fpt or ghec %}
 
@@ -50,6 +50,8 @@ When you want to use an {% data variables.product.prodname_oauth_app %} that int
 **Note:** Currently, you can't scope source code access to read-only.
 
 {% endtip %}
+
+{% data reusables.user-settings.token_access_capabilities %} For example, an application can create an access token that is configured with an `admin:org` scope, but if the user of the application is not an organization owner, the application will not be granted administrative access to the organization.
 
 {% data reusables.apps.oauth-token-limit %}
 

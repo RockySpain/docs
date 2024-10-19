@@ -85,6 +85,84 @@
       "requestPath": "/orgs/{org}/actions/permissions/workflow"
     },
     {
+      "slug": "list-self-hosted-runner-groups-for-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "get",
+      "requestPath": "/orgs/{org}/actions/runner-groups"
+    },
+    {
+      "slug": "create-a-self-hosted-runner-group-for-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "post",
+      "requestPath": "/orgs/{org}/actions/runner-groups"
+    },
+    {
+      "slug": "get-a-self-hosted-runner-group-for-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "get",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}"
+    },
+    {
+      "slug": "update-a-self-hosted-runner-group-for-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "patch",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}"
+    },
+    {
+      "slug": "delete-a-self-hosted-runner-group-from-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "delete",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}"
+    },
+    {
+      "slug": "list-repository-access-to-a-self-hosted-runner-group-in-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "get",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories"
+    },
+    {
+      "slug": "set-repository-access-for-a-self-hosted-runner-group-in-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "put",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories"
+    },
+    {
+      "slug": "add-repository-access-to-a-self-hosted-runner-group-in-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "put",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}"
+    },
+    {
+      "slug": "remove-repository-access-to-a-self-hosted-runner-group-in-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "delete",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}"
+    },
+    {
+      "slug": "list-self-hosted-runners-in-a-group-for-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "get",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners"
+    },
+    {
+      "slug": "set-self-hosted-runners-in-a-group-for-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "put",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners"
+    },
+    {
+      "slug": "add-a-self-hosted-runner-to-a-group-for-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "put",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}"
+    },
+    {
+      "slug": "remove-a-self-hosted-runner-from-a-group-for-an-organization",
+      "subcategory": "self-hosted-runner-groups",
+      "verb": "delete",
+      "requestPath": "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}"
+    },
+    {
       "slug": "list-self-hosted-runners-for-an-organization",
       "subcategory": "self-hosted-runners",
       "verb": "get",
@@ -1449,6 +1527,12 @@
       "subcategory": "configurations",
       "verb": "get",
       "requestPath": "/orgs/{org}/code-security/configurations/{configuration_id}/repositories"
+    },
+    {
+      "slug": "get-the-code-security-configuration-associated-with-a-repository",
+      "subcategory": "configurations",
+      "verb": "get",
+      "requestPath": "/repos/{owner}/{repo}/code-security-configuration"
     }
   ],
   "codes-of-conduct": [
@@ -1957,6 +2041,12 @@
       "subcategory": "copilot-user-management",
       "verb": "get",
       "requestPath": "/orgs/{org}/members/{username}/copilot"
+    },
+    {
+      "slug": "get-a-summary-of-copilot-usage-for-a-team",
+      "subcategory": "copilot-usage",
+      "verb": "get",
+      "requestPath": "/orgs/{org}/team/{team_slug}/copilot/usage"
     }
   ],
   "dependabot": [
@@ -4577,6 +4667,12 @@
       "subcategory": "secret-scanning",
       "verb": "get",
       "requestPath": "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}/locations"
+    },
+    {
+      "slug": "create-a-push-protection-bypass",
+      "subcategory": "secret-scanning",
+      "verb": "post",
+      "requestPath": "/repos/{owner}/{repo}/secret-scanning/push-protection-bypasses"
     }
   ],
   "security-advisories": [

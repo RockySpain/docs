@@ -66,10 +66,10 @@ Available {% data variables.product.prodname_dotcom %}-hosted runner labels are:
 <tbody>
 <tr>
 <td>
-<code>ubuntu-latest</code>,<code>ubuntu-24.04</code> [Beta], <code>ubuntu-22.04</code>, <code>ubuntu-20.04</code>
+<code>ubuntu-latest</code>,<code>ubuntu-24.04</code>, <code>ubuntu-22.04</code>, <code>ubuntu-20.04</code>
 </td>
 <td>
-The <code>ubuntu-latest</code> label currently uses the Ubuntu 22.04 runner image.
+The <code>ubuntu-latest</code> label currently uses the Ubuntu 24.04 runner image.
 </td>
 </tr>
 <tr>
@@ -82,7 +82,7 @@ The <code>windows-latest</code> label currently uses the Windows 2022 runner ima
 </tr>
 <tr>
 <td>
-<code>macos-latest</code>, <code>macos-14</code>, <code>macos-13</code>, <code>macos-12</code>
+<code>macos-latest</code>, <code>macos-15</code> [{% data variables.release-phases.public_preview_caps %}], <code>macos-14</code>, <code>macos-13</code>, <code>macos-12</code>
 </td>
 <td>
 The <code>macos-latest</code> workflow label currently uses the macOS 14 runner image.
@@ -132,7 +132,7 @@ For more information, see "[AUTOTITLE](/actions/hosting-your-own-runners/managin
 You can use `runs-on` to target runner groups, so that the job will execute on any runner that is a member of that group. For more granular control, you can also combine runner groups with labels.
 
 {% ifversion fpt or ghec %}
-Runner groups can only have [{% data variables.actions.hosted_runner %}s](/actions/using-github-hosted-runners/using-larger-runners) or [self-hosted runners](/actions/hosting-your-own-runners) as members.
+Runner groups can only have [{% data variables.actions.hosted_runner %}s](/actions/using-github-hosted-runners/using-larger-runners/about-larger-runners) or [self-hosted runners](/actions/hosting-your-own-runners) as members.
 {% endif %}
 
 #### Example: Using groups to control where jobs are run

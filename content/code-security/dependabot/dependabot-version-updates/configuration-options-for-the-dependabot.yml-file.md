@@ -302,10 +302,10 @@ Use the `allow` option to customize which dependencies are updated. This applies
   | Dependency types | Supported by package managers | Allow updates |
   |------------------|-------------------------------|--------|
   | `direct` | All | All explicitly defined dependencies. |
-  | `indirect` | `bundler`, `pip`, `composer`, `cargo`{% ifversion dependabot-updates-gomod-indirect %}, `gomod`{% endif %} | Dependencies of direct dependencies (also known as sub-dependencies, or transient dependencies).|
-  | `all` | All | All explicitly defined dependencies. For `bundler`, `pip`, `composer`, `cargo`,{% ifversion dependabot-updates-gomod-indirect %} `gomod`,{% endif %} also the dependencies of direct dependencies.|
-  | `production` | `bundler`, `composer`, `mix`, `maven`, `npm`, `pip` | Only dependencies in the "Production dependency group". |
-  | `development`| `bundler`, `composer`, `mix`, `maven`, `npm`, `pip` | Only dependencies in the "Development dependency group". |
+  | `indirect` | `bundler`, `pip`, `composer`, `cargo`, `gomod` | Dependencies of direct dependencies (also known as sub-dependencies, or transient dependencies).|
+  | `all` | All | All explicitly defined dependencies. For `bundler`, `pip`, `composer`, `cargo`, `gomod`, also the dependencies of direct dependencies.|
+  | `production` | `bundler`, `composer`, `mix`, `maven`, `npm`, `pip` (not all managers) | Only dependencies in the "Production dependency group". |
+  | `development`| `bundler`, `composer`, `mix`, `maven`, `npm`, `pip` (not all managers) | Only dependencies in the "Development dependency group". |
 
 ```yaml
 # Use `allow` to specify which dependencies to maintain
@@ -366,7 +366,9 @@ updates:
 
 ### `commit-message`
 
-By default, {% data variables.product.prodname_dependabot %} attempts to detect your commit message preferences and use similar patterns. Use the `commit-message` option to specify your preferences explicitly.
+By default, {% data variables.product.prodname_dependabot %} attempts to detect your commit message preferences and use similar patterns. Use the `commit-message` option to specify your preferences explicitly. This setting also impacts the titles of pull requests.
+
+We populate the titles of pull requests based on the commit messages, whether explicitly set or auto-detected from the repository history.
 
 Supported options
 
@@ -376,12 +378,12 @@ Supported options
 
 {% endnote %}
 
-* `prefix` specifies a prefix for all commit messages.
+* `prefix` specifies a prefix for all commit messages and it will also be added to the start of the PR title.
    When you specify a prefix for commit messages, {% data variables.product.prodname_dotcom %} will automatically add a colon between the defined prefix and the commit message provided the defined prefix ends with a letter, number, closing parenthesis, or closing bracket. This means that, for example, if you end the prefix with a whitespace, there will be no colon added between the prefix and the commit message.
    The code snippet below provides examples of both in the same configuration file.
 
 * `prefix-development` specifies a separate prefix for all commit messages that update dependencies in the Development dependency group. When you specify a value for this option, the `prefix` is used only for updates to dependencies in the Production dependency group. This is supported by: `bundler`, `composer`, `mix`, `maven`, `npm`, and `pip`.
-* `include: "scope"` specifies that any prefix is followed by a list of the dependencies updated in the commit.
+* `include: "scope"` specifies that any prefix is followed by the type of the dependencies (`deps` or `deps-dev`) updated in the commit.
 
 {% data reusables.dependabot.option-affects-security-updates %}
 
@@ -425,7 +427,6 @@ updates:
     commit-message:
       prefix: "pip prod"
       prefix-development: "pip dev"
-      include: "scope"
 ```
 
 If you use the same configuration as in the example above, bumping the `requests` library in the `pip` development dependency group will generate a commit message of:
@@ -737,14 +738,11 @@ updates:
 
 By default, {% data variables.product.prodname_dependabot %} automatically rebases open pull requests when it detects any changes to the pull request. Use `rebase-strategy` to disable this behavior.
 
-{% ifversion dependabot-updates-rebase-30-days-cutoff %}
-
 {% note %}
 
 **Note:** {% data reusables.dependabot.pull-requests-30-days-cutoff %}
 
 {% endnote %}
-{% endif %}
 
 Available rebase strategies
 
@@ -757,20 +755,11 @@ When `rebase-strategy` is set to `auto`, {% data variables.product.prodname_depe
 * When you change the value of `target-branch` in the {% data variables.product.prodname_dependabot %} configuration file. For more information about this field, see "[`target-branch`](#target-branch)."
 * When {% data variables.product.prodname_dependabot %} detects that a {% data variables.product.prodname_dependabot %} pull request is in conflict after a recent push to the target branch.
 
-{% ifversion dependabot-updates-rebase-30-days-cutoff %}
-{% else %}
-{% note %}
-
-**Note:** {% data variables.product.prodname_dependabot %} will keep rebasing a pull request indefinitely until the pull request is closed, merged or you disable {% data variables.product.prodname_dependabot_updates %}.
-
-{% endnote %}
-{% endif %}
-
 When `rebase-strategy` is set to `disabled`, {% data variables.product.prodname_dependabot %} stops rebasing pull requests.
 
 {% note %}
 
-**Note:** This behavior only applies to pull requests that go into conflict with the target branch. {% data variables.product.prodname_dependabot %} will keep rebasing {% ifversion dependabot-updates-rebase-30-days-cutoff %}(until 30 days after opening){% endif %} pull requests opened prior to the `rebase-strategy` setting being changed, and pull requests that are part of a scheduled run.
+**Note:** This behavior only applies to pull requests that go into conflict with the target branch. {% data variables.product.prodname_dependabot %} will keep rebasing (until 30 days after opening) pull requests opened prior to the `rebase-strategy` setting being changed, and pull requests that are part of a scheduled run.
 
 {% endnote %}
 
@@ -1048,9 +1037,9 @@ You can give {% data variables.product.prodname_dependabot %} access to private 
 * Docker
 * Gradle
 * Maven
-* npm
+* Npm
 * Nuget{% ifversion dependabot-updates-pub-private-registry %}
-* pub{% endif %}
+* Pub{% endif %}
 * Python
 * Yarn
 
@@ -1192,8 +1181,6 @@ registries:
 
 {% endraw %}
 
-{% ifversion dependabot-hex-self-hosted-support %}
-
 ### `hex-repository`
 
 The `hex-repository` type supports an authentication key.
@@ -1214,7 +1201,7 @@ registries:
      public-key-fingerprint: ${{secrets.MY_PUBLIC_KEY_FINGERPRINT}}
 ```
 
-{% endraw %}{% endif %}
+{% endraw %}
 
 ### `maven-repository`
 
@@ -1416,17 +1403,17 @@ registries:
 
 {% endraw %}
 
-## Enabling support for beta-level ecosystems
+## Enabling support for {% data variables.release-phases.public_preview %}-level ecosystems
 
 ### `enable-beta-ecosystems`
 
 By default, {% data variables.product.prodname_dependabot %} updates the dependency manifests and lock files only for fully supported ecosystems. Use the `enable-beta-ecosystems` flag to opt in to updates for ecosystems that are not yet generally available.
 
-<!-- add list here once we get ecosystems released in beta -->
-There are currently no ecosystems in beta.
+<!-- add list here once we get ecosystems released in {% data variables.release-phases.public_preview %} -->
+There are currently no ecosystems in {% data variables.release-phases.public_preview %}.
 
 ```yaml
-# Configure beta ecosystem
+# Configure {% data variables.release-phases.public_preview %} ecosystem
 
 version: 2
 enable-beta-ecosystems: true
